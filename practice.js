@@ -1,4 +1,4 @@
-const arr = ["animal:donkey","animal:monkey","human:ram","human:bipin","animal:cat","human:bhuwan"];
+const arr = ["animal:donkey","animal:monkey","human:ram","human:bipin","animal:cat","human:bhuwan","human:shyam","animal:lion"];
 let animal = [];
 let human = [];
 let key = [];
@@ -7,33 +7,26 @@ let key = [];
 const splitArr  = arr.map((item)=>{
     return item.split(":");
  })
- console.log(splitArr);
+ splitArr.map((item,index)=>{
+  
+    key.push(item[0])
+  if(item[0]==="animal"){
+    animal.push(item[1]);
+  }
+  else if(item[0]==="human"){
+    human.push(item[1]);
+  }
+  } )
+ 
 
- for(let i = 0; i<splitArr.length; i++){
-    key.push(splitArr[i][0]);
-  if(splitArr[i][0]==="animal"){
-    animal.push(splitArr[i][1]);
-  }
-  else if (splitArr[i][0]==="human"){
-    human.push(splitArr[i][1]);
-  }
- }
  const uniqueKey = [...new Set(key)];
+
  
 const obj = {};
-
-    uniqueKey.forEach((element, index) => {
-            obj[element] = [];
-            if(element==="animal"){
-                obj[element] = animal;
-            } 
-            else{
-                obj[element] = human;
-            }
-    });
+    
+uniqueKey.reduce((accmulator, currentValue)=>{
+  obj[accmulator]=animal;
+  obj[currentValue]=human;
+})
+   
 console.log(obj);
-
-
-
-
-
